@@ -1,0 +1,288 @@
+{
+  "timestamp": "2026-04-04T22:06:02.193Z",
+  "url": "http://localhost:3000/dynamic-ad",
+  "scenarioDuration": 1681,
+  "cls": 0.07072884114583333,
+  "customScore": 0.07393667872025436,
+  "totalRawShifts": 2,
+  "filteredShifts": 2,
+  "sessionWindows": [
+    {
+      "startTime": 728.6000000089407,
+      "endTime": 1345.2000000029802,
+      "entries": [
+        {
+          "startTime": 728.6000000089407,
+          "value": 0.029108018663194443,
+          "hadRecentInput": false,
+          "sources": [
+            {
+              "selector": "#root > div > div:nth-of-type(1) > div > article:nth-of-type(2)",
+              "previousRect": {
+                "x": 190,
+                "y": 240.484375,
+                "width": 800,
+                "height": 116.078125
+              },
+              "currentRect": {
+                "x": 190,
+                "y": 346.484375,
+                "width": 800,
+                "height": 116.078125
+              }
+            },
+            {
+              "selector": "#root > div > div:nth-of-type(1) > div > article:nth-of-type(3)",
+              "previousRect": {
+                "x": 190,
+                "y": 372.5625,
+                "width": 800,
+                "height": 116.078125
+              },
+              "currentRect": {
+                "x": 190,
+                "y": 478.5625,
+                "width": 800,
+                "height": 116.078125
+              }
+            },
+            {
+              "selector": "#root > div > div:nth-of-type(2)",
+              "previousRect": {
+                "x": 24,
+                "y": 512.640625,
+                "width": 1232,
+                "height": 24
+              },
+              "currentRect": {
+                "x": 24,
+                "y": 618.640625,
+                "width": 1232,
+                "height": 24
+              }
+            }
+          ]
+        },
+        {
+          "startTime": 1345.2000000029802,
+          "value": 0.04162082248263889,
+          "hadRecentInput": false,
+          "sources": [
+            {
+              "selector": "#root > div > div:nth-of-type(1) > div > article:nth-of-type(2)",
+              "previousRect": {
+                "x": 190,
+                "y": 346.484375,
+                "width": 800,
+                "height": 116.078125
+              },
+              "currentRect": {
+                "x": 190,
+                "y": 506.484375,
+                "width": 800,
+                "height": 116.078125
+              }
+            },
+            {
+              "selector": "#root > div > div:nth-of-type(1) > div > article:nth-of-type(3)",
+              "previousRect": {
+                "x": 190,
+                "y": 478.5625,
+                "width": 800,
+                "height": 116.078125
+              },
+              "currentRect": {
+                "x": 190,
+                "y": 638.5625,
+                "width": 800,
+                "height": 81.4375
+              }
+            },
+            {
+              "selector": "#root > div > div:nth-of-type(2)",
+              "previousRect": {
+                "x": 24,
+                "y": 618.640625,
+                "width": 1232,
+                "height": 24
+              },
+              "currentRect": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              }
+            },
+            {
+              "selector": "#root > div > div:nth-of-type(1) > div > div > div:nth-of-type(2)",
+              "previousRect": {
+                "x": 511.59375,
+                "y": 285.984375,
+                "width": 156.8125,
+                "height": 24
+              },
+              "currentRect": {
+                "x": 364.046875,
+                "y": 345.484375,
+                "width": 451.90625,
+                "height": 36
+              }
+            },
+            {
+              "selector": "",
+              "previousRect": {
+                "x": 511.59375,
+                "y": 286.984375,
+                "width": 156.8125,
+                "height": 32
+              },
+              "currentRect": {
+                "x": 364.046875,
+                "y": 347.484375,
+                "width": 451.90625,
+                "height": 32
+              }
+            }
+          ]
+        }
+      ],
+      "cumulativeScore": 0.07072884114583333
+    }
+  ],
+  "entries": [
+    {
+      "startTime": 728.6000000089407,
+      "value": 0.029108018663194443,
+      "hadRecentInput": false,
+      "sources": [
+        {
+          "selector": "#root > div > div:nth-of-type(1) > div > article:nth-of-type(2)",
+          "previousRect": {
+            "x": 190,
+            "y": 240.484375,
+            "width": 800,
+            "height": 116.078125
+          },
+          "currentRect": {
+            "x": 190,
+            "y": 346.484375,
+            "width": 800,
+            "height": 116.078125
+          }
+        },
+        {
+          "selector": "#root > div > div:nth-of-type(1) > div > article:nth-of-type(3)",
+          "previousRect": {
+            "x": 190,
+            "y": 372.5625,
+            "width": 800,
+            "height": 116.078125
+          },
+          "currentRect": {
+            "x": 190,
+            "y": 478.5625,
+            "width": 800,
+            "height": 116.078125
+          }
+        },
+        {
+          "selector": "#root > div > div:nth-of-type(2)",
+          "previousRect": {
+            "x": 24,
+            "y": 512.640625,
+            "width": 1232,
+            "height": 24
+          },
+          "currentRect": {
+            "x": 24,
+            "y": 618.640625,
+            "width": 1232,
+            "height": 24
+          }
+        }
+      ]
+    },
+    {
+      "startTime": 1345.2000000029802,
+      "value": 0.04162082248263889,
+      "hadRecentInput": false,
+      "sources": [
+        {
+          "selector": "#root > div > div:nth-of-type(1) > div > article:nth-of-type(2)",
+          "previousRect": {
+            "x": 190,
+            "y": 346.484375,
+            "width": 800,
+            "height": 116.078125
+          },
+          "currentRect": {
+            "x": 190,
+            "y": 506.484375,
+            "width": 800,
+            "height": 116.078125
+          }
+        },
+        {
+          "selector": "#root > div > div:nth-of-type(1) > div > article:nth-of-type(3)",
+          "previousRect": {
+            "x": 190,
+            "y": 478.5625,
+            "width": 800,
+            "height": 116.078125
+          },
+          "currentRect": {
+            "x": 190,
+            "y": 638.5625,
+            "width": 800,
+            "height": 81.4375
+          }
+        },
+        {
+          "selector": "#root > div > div:nth-of-type(2)",
+          "previousRect": {
+            "x": 24,
+            "y": 618.640625,
+            "width": 1232,
+            "height": 24
+          },
+          "currentRect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          }
+        },
+        {
+          "selector": "#root > div > div:nth-of-type(1) > div > div > div:nth-of-type(2)",
+          "previousRect": {
+            "x": 511.59375,
+            "y": 285.984375,
+            "width": 156.8125,
+            "height": 24
+          },
+          "currentRect": {
+            "x": 364.046875,
+            "y": 345.484375,
+            "width": 451.90625,
+            "height": 36
+          }
+        },
+        {
+          "selector": "",
+          "previousRect": {
+            "x": 511.59375,
+            "y": 286.984375,
+            "width": 156.8125,
+            "height": 32
+          },
+          "currentRect": {
+            "x": 364.046875,
+            "y": 347.484375,
+            "width": 451.90625,
+            "height": 32
+          }
+        }
+      ]
+    }
+  ]
+}

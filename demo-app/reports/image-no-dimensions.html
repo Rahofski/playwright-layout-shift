@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout Shift Report: image-no-dimensions</title>
+  <style>
+:root {
+  --bg: #ffffff;
+  --bg-card: #f8f9fa;
+  --border: #dee2e6;
+  --text: #212529;
+  --text-muted: #6c757d;
+  --good: #0cce6b;
+  --warn: #ffa400;
+  --poor: #ff4e42;
+  --accent: #4361ee;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.card .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.card .value {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.card .badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 4px;
+  color: #fff;
+}
+
+section {
+  margin-bottom: 32px;
+}
+
+section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+
+.heatmap-container {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.heatmap-svg {
+  width: 100%;
+  height: auto;
+}
+
+.timeline-container {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 8px;
+  background: #fff;
+}
+
+.timeline-svg {
+  width: 100%;
+  height: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+thead th {
+  background: var(--bg-card);
+  border-bottom: 2px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+tbody td {
+  border-bottom: 1px solid var(--border);
+  padding: 6px 12px;
+}
+
+tbody tr:hover {
+  background: #f1f3f5;
+}
+
+td.selector {
+  max-width: 350px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.82em;
+  background: #e9ecef;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.empty {
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 12px;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
+footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+  <h1>Layout Shift Report: image-no-dimensions</h1>
+  <div class="subtitle">
+    URL: <strong>http://localhost:3000/image-no-dimensions</strong> &middot;
+    Generated: 2026-04-04T22:05:57.551Z
+  </div>
+
+  
+<div class="cards">
+  <div class="card">
+    <div class="label">CLS</div>
+    <div class="value" style="color: #ffa400">0.1095</div>
+    <span class="badge" style="background: #ffa400">Needs Improvement</span>
+  </div>
+  <div class="card">
+    <div class="label">Custom Score</div>
+    <div class="value">0.1158</div>
+  </div>
+  <div class="card">
+    <div class="label">Layout Shifts</div>
+    <div class="value">3</div>
+    <div style="font-size:0.75rem;color:var(--text-muted)">3 total (0 filtered)</div>
+  </div>
+  <div class="card">
+    <div class="label">Session Windows</div>
+    <div class="value">1</div>
+  </div>
+  <div class="card">
+    <div class="label">Duration</div>
+    <div class="value">1553<span style="font-size:0.8rem;font-weight:400">ms</span></div>
+  </div>
+</div>
+  
+<section>
+  <h2>Heatmap</h2>
+  <div class="heatmap-container">
+    <svg viewBox="0 0 1920 1080" class="heatmap-svg" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ff4e42" opacity="0.7"/>
+    </marker>
+  </defs>
+  <rect width="1920" height="1080" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  <rect x="190" y="131.203125" width="800" height="140.078125" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="4 2" opacity="0.6"/>
+  <rect x="190" y="347.203125" width="800" height="140.078125" fill="rgba(255,0,0,0.70)" stroke="rgba(255,0,0,0.70)" stroke-width="1"/>
+  <line x1="590" y1="201.2421875" x2="590" y2="417.2421875" stroke="#ff4e42" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+  <rect x="24" y="295.28125" width="1232" height="24" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="4 2" opacity="0.6"/>
+  <rect x="24" y="511.28125" width="1232" height="24" fill="rgba(255,0,0,0.70)" stroke="rgba(255,0,0,0.70)" stroke-width="1"/>
+  <line x1="640" y1="307.28125" x2="640" y2="523.28125" stroke="#ff4e42" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+  <rect x="190" y="347.203125" width="800" height="140.078125" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="4 2" opacity="0.6"/>
+  <rect x="190" y="513.203125" width="800" height="140.078125" fill="rgba(255,17,17,0.55)" stroke="rgba(255,17,17,0.55)" stroke-width="1"/>
+  <line x1="590" y1="417.2421875" x2="590" y2="583.2421875" stroke="#ff4e42" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+  <rect x="24" y="511.28125" width="1232" height="24" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="4 2" opacity="0.6"/>
+  <rect x="24" y="677.28125" width="1232" height="24" fill="rgba(255,17,17,0.55)" stroke="rgba(255,17,17,0.55)" stroke-width="1"/>
+  <line x1="640" y1="523.28125" x2="640" y2="689.28125" stroke="#ff4e42" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+  <rect x="190" y="513.203125" width="800" height="140.078125" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="4 2" opacity="0.6"/>
+  <rect x="190" y="649.203125" width="800" height="70.796875" fill="rgba(255,37,37,0.37)" stroke="rgba(255,37,37,0.37)" stroke-width="1"/>
+  <line x1="590" y1="583.2421875" x2="590" y2="684.6015625" stroke="#ff4e42" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+  <rect x="24" y="677.28125" width="1232" height="24" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="4 2" opacity="0.6"/>
+  <rect x="0" y="0" width="0" height="0" fill="rgba(255,37,37,0.37)" stroke="rgba(255,37,37,0.37)" stroke-width="1"/>
+  <line x1="640" y1="689.28125" x2="0" y2="0" stroke="#ff4e42" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.7"/>
+</svg>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch" style="border:1px dashed #999;background:none"></span> Previous position</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:rgba(255,60,60,0.4)"></span> Current position (shift)</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:#ff4e42"></span> Direction arrow</div>
+  </div>
+</section>
+  
+<section>
+  <h2>Timeline</h2>
+  <div class="timeline-container">
+    <svg viewBox="0 0 800 120" class="timeline-svg" xmlns="http://www.w3.org/2000/svg">
+  <line x1="40" y1="90" x2="760" y2="90" stroke="#ccc" stroke-width="1"/>
+  <text x="40" y="105" font-size="11" fill="#888">0ms</text>
+  <text x="760" y="105" font-size="11" fill="#888" text-anchor="end">1553ms</text>
+  <rect x="222.66580811332904" y="50" width="369.0869285226712" height="30" fill="#ffa400" opacity="0.3" rx="3"/>
+  <rect x="222.66580811332904" y="50" width="369.0869285226712" height="30" fill="none" stroke="#ffa400" stroke-width="1.5" rx="3"/>
+  <rect x="221.16580811332904" y="73.77875" width="3" height="6.221250000000001" fill="#ffa400" opacity="0.8" rx="1"/>
+  <rect x="404.387958783913" y="75.5160546875" width="3" height="4.4839453125" fill="#ffa400" opacity="0.8" rx="1"/>
+  <rect x="590.2527366360002" y="76" width="3" height="4" fill="#ffa400" opacity="0.8" rx="1"/>
+  <text x="407.20927237466464" y="44" font-size="10" text-anchor="middle" fill="#555">W1: 0.1095</text>
+</svg>
+  </div>
+</section>
+  
+<section>
+  <h2>Per-Element Breakdown</h2>
+  <table class="breakdown-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Selector</th>
+      <th>Shifts</th>
+      <th>Total Value</th>
+      <th>Contribution</th>
+      <th>Mean Amplitude</th>
+      <th>Max Amplitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td class="selector"><code>#root &gt; div &gt; div:nth-of-type(1) &gt; div &gt; div:nth-of-type(4)</code></td>
+      <td>3</td>
+      <td>0.0547</td>
+      <td>50.0%</td>
+      <td>0.0731</td>
+      <td>0.0981</td>
+    </tr>
+<tr>
+      <td>2</td>
+      <td class="selector"><code>#root &gt; div &gt; div:nth-of-type(2)</code></td>
+      <td>3</td>
+      <td>0.0547</td>
+      <td>50.0%</td>
+      <td>0.2001</td>
+      <td>0.4270</td>
+    </tr>
+  </tbody>
+</table>
+</section>
+  
+<section>
+  <h2>All Entries</h2>
+  <table class="entries-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Time</th>
+      <th>Value</th>
+      <th>Input-driven</th>
+      <th>Sources</th>
+      <th>Selectors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>394.0ms</td>
+      <td>0.0518</td>
+      <td>No</td>
+      <td>2</td>
+      <td class="selector"><code>#root &gt; div &gt; div:nth-of-type(1) &gt; div &gt; div:nth-of-type(4), #root &gt; div &gt; div:nth-of-type(2)</code></td>
+    </tr>
+<tr>
+      <td>2</td>
+      <td>789.2ms</td>
+      <td>0.0374</td>
+      <td>No</td>
+      <td>2</td>
+      <td class="selector"><code>#root &gt; div &gt; div:nth-of-type(1) &gt; div &gt; div:nth-of-type(4), #root &gt; div &gt; div:nth-of-type(2)</code></td>
+    </tr>
+<tr>
+      <td>3</td>
+      <td>1190.1ms</td>
+      <td>0.0203</td>
+      <td>No</td>
+      <td>2</td>
+      <td class="selector"><code>#root &gt; div &gt; div:nth-of-type(1) &gt; div &gt; div:nth-of-type(4), #root &gt; div &gt; div:nth-of-type(2)</code></td>
+    </tr>
+  </tbody>
+</table>
+</section>
+
+  <footer>
+    Generated by <strong>playwright-layout-shift</strong> &middot;
+    Layout Instability API &middot; 2026-04-04T22:05:57.553Z
+  </footer>
+</body>
+</html>

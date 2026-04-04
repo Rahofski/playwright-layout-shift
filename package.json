@@ -1,0 +1,48 @@
+{
+  "name": "playwright-layout-shift",
+  "version": "0.1.0",
+  "description": "Playwright plugin for automated visual stability assessment via Layout Instability API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "npx playwright test tests/integration",
+    "test": "npm run test:unit && npm run test:integration",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "playwright",
+    "cls",
+    "layout-shift",
+    "visual-stability",
+    "web-performance",
+    "testing"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@playwright/test": ">=1.30.0",
+    "playwright": ">=1.30.0"
+  },
+  "peerDependenciesMeta": {
+    "@playwright/test": {
+      "optional": true
+    },
+    "playwright": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^25.5.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "timestamp": "2026-03-30T20:00:00.000Z",
+  "url": "https://example.com",
+  "scenarioDuration": 1523,
+  "cls": 0.1872,
+  "customScore": 0.2145,
+  "totalRawShifts": 5,
+  "filteredShifts": 3,
+  "sessionWindows": [
+    {
+      "startTime": 234.5,
+      "endTime": 512.3,
+      "cumulativeScore": 0.0321,
+      "entries": [
+        {
+          "startTime": 234.5,
+          "value": 0.0121,
+          "hadRecentInput": false,
+          "sources": [
+            {
+              "selector": "body > div:nth-of-type(1) > p",
+              "previousRect": { "x": 0, "y": 20, "width": 800, "height": 40 },
+              "currentRect": { "x": 0, "y": 220, "width": 800, "height": 40 }
+            }
+          ]
+        },
+        {
+          "startTime": 512.3,
+          "value": 0.02,
+          "hadRecentInput": false,
+          "sources": [
+            {
+              "selector": "body > div:nth-of-type(2)",
+              "previousRect": { "x": 0, "y": 60, "width": 800, "height": 200 },
+              "currentRect": { "x": 0, "y": 260, "width": 800, "height": 200 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "startTime": 3200.1,
+      "endTime": 3200.1,
+      "cumulativeScore": 0.1872,
+      "entries": [
+        {
+          "startTime": 3200.1,
+          "value": 0.1872,
+          "hadRecentInput": false,
+          "sources": [
+            {
+              "selector": "#content",
+              "previousRect": { "x": 0, "y": 0, "width": 1200, "height": 600 },
+              "currentRect": { "x": 0, "y": 300, "width": 1200, "height": 600 }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "startTime": 234.5,
+      "value": 0.0121,
+      "hadRecentInput": false,
+      "sources": [
+        {
+          "selector": "body > div:nth-of-type(1) > p",
+          "previousRect": { "x": 0, "y": 20, "width": 800, "height": 40 },
+          "currentRect": { "x": 0, "y": 220, "width": 800, "height": 40 }
+        }
+      ]
+    },
+    {
+      "startTime": 512.3,
+      "value": 0.02,
+      "hadRecentInput": false,
+      "sources": [
+        {
+          "selector": "body > div:nth-of-type(2)",
+          "previousRect": { "x": 0, "y": 60, "width": 800, "height": 200 },
+          "currentRect": { "x": 0, "y": 260, "width": 800, "height": 200 }
+        }
+      ]
+    },
+    {
+      "startTime": 3200.1,
+      "value": 0.1872,
+      "hadRecentInput": false,
+      "sources": [
+        {
+          "selector": "#content",
+          "previousRect": { "x": 0, "y": 0, "width": 1200, "height": 600 },
+          "currentRect": { "x": 0, "y": 300, "width": 1200, "height": 600 }
+        }
+      ]
+    }
+  ]
+}

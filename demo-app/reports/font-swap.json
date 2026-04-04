@@ -1,0 +1,154 @@
+{
+  "timestamp": "2026-04-04T22:06:06.483Z",
+  "url": "http://localhost:3000/font-swap",
+  "scenarioDuration": 1256,
+  "cls": 0.014476846694946291,
+  "customScore": 0.014613508710208214,
+  "totalRawShifts": 1,
+  "filteredShifts": 1,
+  "sessionWindows": [
+    {
+      "startTime": 955.5999999940395,
+      "endTime": 955.5999999940395,
+      "entries": [
+        {
+          "startTime": 955.5999999940395,
+          "value": 0.014476846694946291,
+          "hadRecentInput": false,
+          "sources": [
+            {
+              "selector": "#root > div > div:nth-of-type(1) > div > div:nth-of-type(2)",
+              "previousRect": {
+                "x": 190,
+                "y": 433.890625,
+                "width": 800,
+                "height": 184.3125
+              },
+              "currentRect": {
+                "x": 190,
+                "y": 382.703125,
+                "width": 800,
+                "height": 184.3125
+              }
+            },
+            {
+              "selector": "#root > div > div:nth-of-type(1) > div > div:nth-of-type(1) > p:nth-of-type(3)",
+              "previousRect": {
+                "x": 210,
+                "y": 321.109375,
+                "width": 760,
+                "height": 76.78125
+              },
+              "currentRect": {
+                "x": 210,
+                "y": 295.515625,
+                "width": 760,
+                "height": 51.1875
+              }
+            },
+            {
+              "selector": "#root > div > div:nth-of-type(2)",
+              "previousRect": {
+                "x": 24,
+                "y": 642.203125,
+                "width": 1232,
+                "height": 24
+              },
+              "currentRect": {
+                "x": 24,
+                "y": 591.015625,
+                "width": 1232,
+                "height": 24
+              }
+            },
+            {
+              "selector": "#root > div > div:nth-of-type(1) > div > div:nth-of-type(1) > p:nth-of-type(2)",
+              "previousRect": {
+                "x": 210,
+                "y": 269.921875,
+                "width": 760,
+                "height": 51.1875
+              },
+              "currentRect": {
+                "x": 209,
+                "y": 244.328125,
+                "width": 761,
+                "height": 51.1875
+              }
+            }
+          ]
+        }
+      ],
+      "cumulativeScore": 0.014476846694946291
+    }
+  ],
+  "entries": [
+    {
+      "startTime": 955.5999999940395,
+      "value": 0.014476846694946291,
+      "hadRecentInput": false,
+      "sources": [
+        {
+          "selector": "#root > div > div:nth-of-type(1) > div > div:nth-of-type(2)",
+          "previousRect": {
+            "x": 190,
+            "y": 433.890625,
+            "width": 800,
+            "height": 184.3125
+          },
+          "currentRect": {
+            "x": 190,
+            "y": 382.703125,
+            "width": 800,
+            "height": 184.3125
+          }
+        },
+        {
+          "selector": "#root > div > div:nth-of-type(1) > div > div:nth-of-type(1) > p:nth-of-type(3)",
+          "previousRect": {
+            "x": 210,
+            "y": 321.109375,
+            "width": 760,
+            "height": 76.78125
+          },
+          "currentRect": {
+            "x": 210,
+            "y": 295.515625,
+            "width": 760,
+            "height": 51.1875
+          }
+        },
+        {
+          "selector": "#root > div > div:nth-of-type(2)",
+          "previousRect": {
+            "x": 24,
+            "y": 642.203125,
+            "width": 1232,
+            "height": 24
+          },
+          "currentRect": {
+            "x": 24,
+            "y": 591.015625,
+            "width": 1232,
+            "height": 24
+          }
+        },
+        {
+          "selector": "#root > div > div:nth-of-type(1) > div > div:nth-of-type(1) > p:nth-of-type(2)",
+          "previousRect": {
+            "x": 210,
+            "y": 269.921875,
+            "width": 760,
+            "height": 51.1875
+          },
+          "currentRect": {
+            "x": 209,
+            "y": 244.328125,
+            "width": 761,
+            "height": 51.1875
+          }
+        }
+      ]
+    }
+  ]
+}

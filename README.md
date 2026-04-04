@@ -127,85 +127,47 @@ saveReport(report, 'reports/stability.json');
 
 Пример: [sample-report.json](./sample-report.json)
 
-## Примеры
+### HTML-отчёт с тепловой картой
 
-- [Базовое использование](./examples/basic-usage.spec.ts) — без fixture, ручной assert
-- [Fixture](./examples/fixture-usage.spec.ts) — через `visualStability` fixture
+Генерирует self-contained HTML-файл с:
+- **Summary-карточки** — CLS (с рейтингом Good/Needs Improvement/Poor), Custom Score, количество shift-ов, session windows, длительность
+- **Тепловая карта** — SVG-визуализация всех shift-ов на viewport (previousRect → currentRect со стрелками)
+- **Timeline** — горизонтальная шкала session windows с отметками отдельных shift-ов
+- **Per-element breakdown** — таблица элементов-«нарушителей», отсортированных по вкладу в CLS
+- **Все entries** — детальная таблица всех layout-shift записей
 
-## Ограничения
+```ts
+import { buildReport, buildHtmlReport, saveHtmlReport } from 'playwright-layout-shift';
 
-### Почему только Chromium?
-
-1. **Layout Instability API** — это экспериментальный API, реализованный только в Chromium ≥ 77.
-2. Firefox и WebKit **не поддерживают** `PerformanceObserver` с типом `layout-shift`.
-3. Поля `sources[].previousRect` и `sources[].currentRect` доступны только в Chromium ≥ 92.
-4. Альтернатив на уровне CDP для Firefox/WebKit не существует.
-
-### Другие ограничения
-
-- **`sources` содержит до 5 элементов** — это ограничение спецификации Layout Instability API.
-- **CSS-селектор** (`source.selector`) строится best-effort и может быть неточным для сложных DOM-деревьев.
-- **`hadRecentInput`** помечает shift-ы в 500ms после user input — это эвристика браузера, не гарантия.
-- **`value`** — безразмерная дробь (impact fraction × distance fraction), **не пиксели**.
-- **data: URL** в тестах могут вести себя иначе, чем реальные HTTP-страницы (нет `navigation` entry).
-- **SPA-навигации** не сбрасывают observer (это фича, не баг).
-
-## Структура пакета
-
-```
-src/
-├── types.ts        — Все интерфейсы и типы
-├── injection.ts    — JS-код для инжекта в браузер
-├── collector.ts    — Сбор entries через page.evaluate
-├── metrics.ts      — calculateCLS + calculateCustomMetric
-├── assertion.ts    — assertVisualStability
-├── measure.ts      — measureVisualStability (главный API)
-├── fixture.ts      — Playwright Test fixture
-├── reporter.ts     — JSON-отчёт
-└── index.ts        — Реэкспорт публичного API
+const report = buildReport(result, 'https://example.com');
+const html = buildHtmlReport(report, {
+  title: 'My Stability Report',
+  viewportWidth: 1920,
+  viewportHeight: 1080,
+  showHeatmap: true,
+  showTimeline: true,
+  showBreakdown: true,
+});
+saveHtmlReport(html, 'reports/stability.html');
 ```
 
-## Тестирование
+**Опции `HtmlReportOptions`:**
 
-```bash
-# Unit-тесты (Vitest)
-npm run test:unit
+| Параметр | Тип | По умолчанию | Описание |
+|----------|-----|-------------|----------|
+| `title` | `string` | `'Visual Stability Report'` | Заголовок страницы |
+| `viewportWidth` | `number` | `1920` | Ширина viewport для heatmap |
+| `viewportHeight` | `number` | `1080` | Высота viewport для heatmap |
+| `showBreakdown` | `boolean` | `true` | Показывать таблицу per-element breakdown |
+| `showTimeline` | `boolean` | `true` | Показывать timeline session windows |
+| `showHeatmap` | `boolean` | `true` | Показывать тепловую карту |
 
-# Интеграционные тесты (Playwright + Chromium)
-npm run test:integration
+### `buildElementBreakdown(entries)`
 
-# Все тесты
-npm test
-```
+Агрегирует layout-shift entries по CSS-селекторам. Для каждого элемента вычисляет:
+- Количество shift-ов
+- Суммарный вклад в CLS (value распределяется поровну между sources)
+- Среднюю и максимальную амплитуду смещения
+- Все пары previousRect/currentRect
 
-## MVP vs. запланировано на будущее
-
-### MVP (реализовано)
-
-- Инжект PerformanceObserver через `addInitScript` + `page.evaluate`
-- Сбор layout-shift entries с фильтрацией `hadRecentInput`
-- CLS (session window) — точная реализация по Google
-- Кастомная метрика с учётом amplitude
-- `measureVisualStability()` — главный API
-- `assertVisualStability()` — проверка порогов
-- Playwright Test fixture
-- JSON-отчёт
-- Unit + integration тесты
-
-### Планы на будущее
-
-- [ ] CDP-fallback для сбора layout-shift (более точные таймстемпы через `Performance.enable`)
-- [ ] Per-element breakdown (детальный отчёт по каждому сместившемуся элементу)
-- [ ] Визуальные скриншоты до/после shift-а
-- [ ] HTML-отчёт с тепловой картой shift-ов
-- [ ] Поддержка нескольких page (multi-tab scenarios)
-- [ ] CI-интеграция (GitHub Actions reporter)
-- [ ] Сравнение метрик между запусками (trend analysis)
-- [ ] Конфигурация через `playwright.config.ts`
-
-## Лицензия
-
-MIT
-#   p l a y w r i g h t - l a y o u t - s h i f t  
- #   p l a y w r i g h t - l a y o u t - s h i f t  
- 
+```ts

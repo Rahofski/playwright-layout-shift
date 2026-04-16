@@ -2,7 +2,7 @@
 
 # Authors and contributors
 
-The main contributor Roman R. Garipov, student of SPbPU ICSC.
+The main contributor Roman I. Rakhov, student of SPbPU ICSC.
 
 The advisor and contributor Vladimir A. Parkhomenko, Senior Lecturer of SPbPU ICSC.
 

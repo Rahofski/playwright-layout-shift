@@ -1,8 +1,6 @@
 import type { Page } from 'playwright';
 /**
  * Прямоугольник элемента (аналог DOMRectReadOnly из Layout Instability API).
- * Все значения нормализованы к viewport (0..1) в браузерном коде,
- * но здесь хранятся в абсолютных пикселях для удобства анализа.
  */
 export interface ShiftRect {
     x: number;
@@ -22,12 +20,6 @@ export interface LayoutShiftSource {
 }
 /**
  * Одна запись layout-shift, сериализованная из PerformanceObserver entry.
- *
- * Ограничения браузерного API:
- *  — `value` это безразмерная дробь (fraction of viewport × distance fraction).
- *  — `hadRecentInput` помечает shift-ы, вызванные пользовательским вводом
- *    (клик, тап, keypress) в пределах 500 ms.
- *  — `sources` массив до 5 элементов (ограничение спецификации).
  */
 export interface LayoutShiftEntry {
     /** Метка времени в миллисекундах от начала навигации (performance.timeOrigin) */

@@ -23,7 +23,7 @@ The advisor and contributor Vladimir A. Parkhomenko, Senior Lecturer of SPbPU IC
 3. **Settle-ожидание** — пауза (`settleTimeout`, по умолчанию 1000 мс) для фиксации отложенных shift-ов.
 4. **Сбор entries** — через `page.evaluate()` извлекаются накопленные `LayoutShiftEntry[]` (value, startTime, sources с `previousRect`/`currentRect`, CSS-селекторы через `element.matches()`).
 5. **Фильтрация** — исключаются input-driven shift-ы (`hadRecentInput`), если не задан `includeInputDriven`.
-6. **Вычисление метрик** — CLS (максимум среди session windows) и кастомная метрика: $\text{windowScore} = \sum_{e \in W} e.\text{value} \times (1 + \alpha \cdot \text{amplitude}(e))$.
+6. **Вычисление метрик** — CLS (максимум среди session windows) и кастомная метрика: $\text{windowScore} = \sum_{e \in W} e.\text{value} \cdot (1 + \alpha \cdot \text{amplitude}(e))$.
 7. **Per-element breakdown** — агрегация shift-ов по CSS-селекторам: count, суммарный вклад, средняя/макс. амплитуда.
 8. **Генерация отчётов** — JSON-отчёт и/или HTML-отчёт (SVG-тепловая карта, timeline session windows, таблица breakdown).
 9. **Assert** — проверка CLS и customScore по заданным порогам, выброс `VisualStabilityError` при превышении.
@@ -154,6 +154,35 @@ The advisor and contributor Vladimir A. Parkhomenko, Senior Lecturer of SPbPU IC
 
 **Артефакты эксперимента.** Сырые данные: [`benchmark/results/raw-samples.json`](./benchmark/results/raw-samples.json), [`benchmark/results/raw-samples.csv`](./benchmark/results/raw-samples.csv). Агрегированные: [`benchmark/results/aggregated.json`](./benchmark/results/aggregated.json). Отчёт: [`benchmark/results/benchmark-report.md`](./benchmark/results/benchmark-report.md). Демо-приложение со сценариями: [`demo-app/`](./demo-app/). HTML-отчёты по сценариям: [`demo-app/reports/`](./demo-app/reports/). Скрипт бенчмарка: [`benchmark/run-benchmark.ts`](./benchmark/run-benchmark.ts).
 
+# Исследование чувствительности кастомной метрики к параметру α
+
+Для демонстрации влияния параметра $\alpha$ (amplitudeWeight) на кастомную метрику проведён эксперимент на сценарии **image-no-dimensions** (три изображения без заданных width/height загружаются каскадно — 300 мс, 700 мс, 1100 мс — и вызывают три последовательных layout shift). Параметр $\alpha$ варьируется от 0.0 до 1.0 с шагом 0.1. Viewport: 1920×1080, повторов: **30**, 95% CI (t-распределение).
+
+## Таблица 7. Чувствительность customScore к α (сценарий image-no-dimensions)
+
+| α | CLS (95% CI) | customScore (95% CI) | customScore / CLS | log₁₀(CLS) | log₁₀(customScore) | Δlog₁₀ |
+|---|-------------|---------------------|-------------------|------------|---------------------|--------|
+| 0.0 | 0.1095 ± 0.0001 | 0.1095 ± 0.0001 | 1.000 ± 0.000 | −0.961 | −0.961 | 0.000 |
+| 0.1 | 0.1095 ± 0.0001 | 0.1111 ± 0.0002 | 1.015 ± 0.001 | −0.961 | −0.954 | 0.006 |
+| 0.2 | 0.1095 ± 0.0001 | 0.1128 ± 0.0002 | 1.030 ± 0.001 | −0.961 | −0.948 | 0.013 |
+| 0.3 | 0.1095 ± 0.0001 | 0.1144 ± 0.0002 | 1.045 ± 0.001 | −0.961 | −0.942 | 0.019 |
+| 0.4 | 0.1095 ± 0.0001 | 0.1161 ± 0.0003 | 1.060 ± 0.002 | −0.961 | −0.935 | 0.026 |
+| 0.5 | 0.1095 ± 0.0001 | 0.1177 ± 0.0003 | 1.075 ± 0.002 | −0.961 | −0.929 | 0.031 |
+| 0.6 | 0.1095 ± 0.0001 | 0.1194 ± 0.0003 | 1.090 ± 0.002 | −0.961 | −0.923 | 0.038 |
+| 0.7 | 0.1095 ± 0.0001 | 0.1210 ± 0.0004 | 1.105 ± 0.002 | −0.961 | −0.917 | 0.043 |
+| 0.8 | 0.1095 ± 0.0001 | 0.1226 ± 0.0004 | 1.120 ± 0.003 | −0.961 | −0.912 | 0.049 |
+| 0.9 | 0.1095 ± 0.0001 | 0.1243 ± 0.0004 | 1.135 ± 0.003 | −0.961 | −0.906 | 0.055 |
+| 1.0 | 0.1095 ± 0.0001 | 0.1259 ± 0.0005 | 1.150 ± 0.003 | −0.961 | −0.900 | 0.061 |
+
+**Интерпретация.**
+- CLS не зависит от α (это стандартная метрика Google) и составляет 0.1095 — три каскадных shift-а (0.0518, 0.0374, 0.0203) попадают в одно session window.
+- customScore монотонно растёт с увеличением α: от 0.1095 (≡ CLS при α = 0) до 0.1259 (при α = 1.0), прирост составляет **+15.0%**.
+- При выбранном α = 0.5 кастомная метрика = 0.1177, что на **7.5%** выше CLS — штраф отражает среднюю амплитуду сдвигов ≈ 0.15 (15% диагонали viewport).
+- Логарифмическая шкала (Δlog₁₀) подтверждает: разница customScore vs CLS увеличивается линейно с ростом α, достигая 0.061 десятичных порядка при α = 1.0.
+- **Обоснование необходимости штрафа:** CLS оценивает все три shift-а суммарно как 0.1095, но не различает, сместились ли элементы на 20 px или на 200 px по экрану. В данном сценарии средняя амплитуда двух сдвигающихся объектов составляет 0.073 (контейнер картинок) и 0.200 (текстовый блок под ними — сдвигается на ≈430 px). Кастомная метрика при α > 0 вносит штраф, пропорциональный евклидову расстоянию смещения, нормализованному к диагонали viewport — что позволяет различать «лёгкие» и «тяжёлые» сдвиги с одинаковым CLS.
+
+Скрипт эксперимента: [`benchmark/run-alpha-demo.ts`](./benchmark/run-alpha-demo.ts).
+
 Репозиторий с полным кодом и артефактами: **https://github.com/TODO_REPLACE_WITH_ACTUAL_REPO_URL**
 
 # Instruction
@@ -259,7 +288,7 @@ const { cls, sessionWindows } = calculateCLS(entries);
 
 Формула:
 
-$$\text{windowScore} = \sum_{e \in W} e.\text{value} \times \left(1 + \alpha \cdot \text{amplitude}(e)\right)$$
+$$\text{windowScore} = \sum_{e \in W} e.\text{value} \cdot \left(1 + \alpha \cdot \text{amplitude}(e)\right)$$
 
 где $\alpha$ = `amplitudeWeight`.
 

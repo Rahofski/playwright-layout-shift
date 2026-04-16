@@ -1,18 +1,9 @@
 "use strict";
-// ============================================================
-// breakdown.ts — Per-element breakdown: агрегация shift-ов по элементам
-// ============================================================
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.buildElementBreakdown = buildElementBreakdown;
 const metrics_1 = require("./metrics");
 /**
  * Агрегирует layout-shift entries по CSS-селекторам.
- *
- * Каждый entry может содержать до 5 sources (ограничение спецификации).
- * Вклад entry.value распределяется поровну между его sources.
- *
- * @param entries — отфильтрованные layout-shift записи.
- * @returns Массив ElementBreakdown, отсортированный по totalValue (убывание).
  */
 function buildElementBreakdown(entries) {
     const map = new Map();
@@ -54,7 +45,6 @@ function buildElementBreakdown(entries) {
             rects: agg.rects,
         });
     }
-    // Сортировка по вкладу — наибольшие «нарушители» первыми
     result.sort((a, b) => b.totalValue - a.totalValue);
     return result;
 }

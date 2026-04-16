@@ -1,9 +1,6 @@
 /**
  * Возвращает строку JS-кода для инжекта через page.evaluate / addInitScript.
  *
- * Код регистрирует PerformanceObserver на тип 'layout-shift' и складывает
- * сериализованные записи в window.__pls_entries.
- *
  * Техническое ограничение:
  *  — Layout Instability API доступен только в Chromium-based браузерах.
  *  — PerformanceObserver.supportedEntryTypes может не содержать 'layout-shift'

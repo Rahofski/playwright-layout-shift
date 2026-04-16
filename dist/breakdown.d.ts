@@ -24,12 +24,6 @@ export interface ElementBreakdown {
 }
 /**
  * Агрегирует layout-shift entries по CSS-селекторам.
- *
- * Каждый entry может содержать до 5 sources (ограничение спецификации).
- * Вклад entry.value распределяется поровну между его sources.
- *
- * @param entries — отфильтрованные layout-shift записи.
- * @returns Массив ElementBreakdown, отсортированный по totalValue (убывание).
  */
 export declare function buildElementBreakdown(entries: LayoutShiftEntry[]): ElementBreakdown[];
 //# sourceMappingURL=breakdown.d.ts.map

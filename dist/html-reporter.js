@@ -45,9 +45,6 @@ const path = __importStar(require("path"));
 const DEFAULT_TITLE = 'Visual Stability Report';
 const DEFAULT_VP_WIDTH = 1920;
 const DEFAULT_VP_HEIGHT = 1080;
-// ————————————————————————————————————————————
-// Утилиты
-// ————————————————————————————————————————————
 function escapeHtml(text) {
     return text
         .replace(/&/g, '&amp;')
@@ -55,9 +52,6 @@ function escapeHtml(text) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
 }
-/**
- * Переводит CLS-значение в категорию Google.
- */
 function clsRating(cls) {
     if (cls <= 0.1)
         return { label: 'Good', color: '#0cce6b' };
@@ -65,10 +59,6 @@ function clsRating(cls) {
         return { label: 'Needs Improvement', color: '#ffa400' };
     return { label: 'Poor', color: '#ff4e42' };
 }
-/**
- * Интенсивность цвета для heatmap (0..1) → rgba строка.
- * Красный канал: чем больше value, тем ярче.
- */
 function heatColor(intensity) {
     const clamped = Math.min(1, Math.max(0, intensity));
     const r = 255;
@@ -81,7 +71,6 @@ function heatColor(intensity) {
 // SVG Heatmap
 // ————————————————————————————————————————————
 function renderHeatmapSvg(entries, vpWidth, vpHeight) {
-    // Находим max value для нормализации интенсивности
     let maxValue = 0;
     for (const e of entries) {
         if (e.value > maxValue)
@@ -90,7 +79,6 @@ function renderHeatmapSvg(entries, vpWidth, vpHeight) {
     if (maxValue === 0)
         maxValue = 1;
     const rects = [];
-    // Стрелки смещения + previousRect (полупрозрачный) + currentRect (ярче)
     for (const entry of entries) {
         const intensity = entry.value / maxValue;
         for (const src of entry.sources) {
@@ -99,10 +87,8 @@ function renderHeatmapSvg(entries, vpWidth, vpHeight) {
             // previousRect — серый контур
             rects.push(`<rect x="${prev.x}" y="${prev.y}" width="${prev.width}" height="${prev.height}" ` +
                 `fill="none" stroke="#999" stroke-width="1" stroke-dasharray="4 2" opacity="0.6"/>`);
-            // currentRect — залитый по интенсивности
             rects.push(`<rect x="${curr.x}" y="${curr.y}" width="${curr.width}" height="${curr.height}" ` +
                 `fill="${heatColor(intensity)}" stroke="${heatColor(intensity)}" stroke-width="1"/>`);
-            // Стрелка от центра prev к центру curr
             const px = prev.x + prev.width / 2;
             const py = prev.y + prev.height / 2;
             const cx = curr.x + curr.width / 2;
@@ -121,9 +107,6 @@ function renderHeatmapSvg(entries, vpWidth, vpHeight) {
   ${rects.join('\n  ')}
 </svg>`;
 }
-// ————————————————————————————————————————————
-// Timeline SVG
-// ————————————————————————————————————————————
 function renderTimelineSvg(sessionWindows, scenarioDuration) {
     const width = 800;
     const height = 120;
@@ -135,9 +118,7 @@ function renderTimelineSvg(sessionWindows, scenarioDuration) {
     }
     const scale = (t) => padding + (t / scenarioDuration) * (width - 2 * padding);
     const elements = [];
-    // Ось времени
     elements.push(`<line x1="${padding}" y1="${trackY + trackH + 10}" x2="${width - padding}" y2="${trackY + trackH + 10}" stroke="#ccc" stroke-width="1"/>`, `<text x="${padding}" y="${trackY + trackH + 25}" font-size="11" fill="#888">0ms</text>`, `<text x="${width - padding}" y="${trackY + trackH + 25}" font-size="11" fill="#888" text-anchor="end">${scenarioDuration.toFixed(0)}ms</text>`);
-    // Session windows
     for (let i = 0; i < sessionWindows.length; i++) {
         const w = sessionWindows[i];
         const x1 = scale(w.startTime);
@@ -145,13 +126,11 @@ function renderTimelineSvg(sessionWindows, scenarioDuration) {
         const winWidth = x2 - x1;
         const rating = clsRating(w.cumulativeScore);
         elements.push(`<rect x="${x1}" y="${trackY}" width="${winWidth}" height="${trackH}" fill="${rating.color}" opacity="0.3" rx="3"/>`, `<rect x="${x1}" y="${trackY}" width="${winWidth}" height="${trackH}" fill="none" stroke="${rating.color}" stroke-width="1.5" rx="3"/>`);
-        // Отдельные shift-ы внутри окна
         for (const entry of w.entries) {
             const ex = scale(entry.startTime);
             const barH = Math.max(4, (entry.value / 0.25) * trackH);
             elements.push(`<rect x="${ex - 1.5}" y="${trackY + trackH - barH}" width="3" height="${barH}" fill="${rating.color}" opacity="0.8" rx="1"/>`);
         }
-        // Подпись
         elements.push(`<text x="${(x1 + x2) / 2}" y="${trackY - 6}" font-size="10" text-anchor="middle" fill="#555">W${i + 1}: ${w.cumulativeScore.toFixed(4)}</text>`);
     }
     return `<svg viewBox="0 0 ${width} ${height}" class="timeline-svg" xmlns="http://www.w3.org/2000/svg">

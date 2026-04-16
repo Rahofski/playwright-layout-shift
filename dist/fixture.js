@@ -1,25 +1,14 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.expect = exports.test = void 0;
 // ============================================================
 // fixture.ts — Playwright Test fixture для визуальной стабильности
 // ============================================================
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.expect = exports.test = void 0;
 const test_1 = require("@playwright/test");
 const measure_1 = require("./measure");
 const assertion_1 = require("./assertion");
 /**
  * Расширенный Playwright Test с fixture `visualStability`.
- *
- * Использование:
- * ```ts
- * import { test, expect } from 'playwright-layout-shift/fixture';
- *
- * test('page is visually stable', async ({ page, visualStability }) => {
- *   await visualStability.measureAndAssert(page, async (p) => {
- *     await p.goto('https://example.com');
- *   }, { clsThreshold: 0.1 });
- * });
- * ```
  */
 exports.test = test_1.test.extend({
     visualStability: async ({}, use) => {

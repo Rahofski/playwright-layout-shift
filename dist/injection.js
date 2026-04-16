@@ -66,7 +66,6 @@ function getInjectionScript(options) {
           }
         }
 `;
-    // Весь код оформлен как строка — он будет передан в page.evaluate / addInitScript.
     return `
 (function() {
   if (window.__pls_entries) return; // уже инициализировано

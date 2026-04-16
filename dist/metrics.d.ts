@@ -1,12 +1,4 @@
 import type { LayoutShiftEntry, SessionWindow, CustomMetricOptions, ShiftRect } from './types';
-/**
- * Группирует layout-shift entries в session windows.
- *
- * Алгоритм:
- *  1) Записи сортируются по startTime.
- *  2) Новое окно начинается, если промежуток > sessionGap
- *     или длительность текущего окна > sessionMaxDuration.
- */
 export declare function buildSessionWindows(entries: LayoutShiftEntry[], sessionGap?: number, sessionMaxDuration?: number): SessionWindow[];
 /**
  * Вычисляет CLS — максимальное значение cumulativeScore среди session windows.

@@ -13,6 +13,7 @@
     "test:integration": "npx playwright test tests/integration",
     "test": "npm run test:unit && npm run test:integration",
     "benchmark": "npx tsx benchmark/run-benchmark.ts",
+    "sensitivity": "npx tsx benchmark/run-sensitivity.ts",
     "prepublishOnly": "npm run build"
   },
   "keywords": [

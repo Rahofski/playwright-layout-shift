@@ -1,7 +1,4 @@
 "use strict";
-// ============================================================
-// collector.ts — Сбор layout-shift entries через page.evaluate
-// ============================================================
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.injectObserver = injectObserver;
 exports.collectEntries = collectEntries;
@@ -18,10 +15,7 @@ async function injectObserver(page, options) {
     const script = (0, injection_1.getInjectionScript)({
         captureSources: options.captureSources ?? true,
     });
-    // addInitScript выполняется при каждой навигации,
-    // поэтому observer будет работать даже при page.goto() внутри сценария.
     await page.addInitScript(script);
-    // Также выполняем сразу на текущей странице (если уже загружена).
     await page.evaluate(script);
 }
 /**

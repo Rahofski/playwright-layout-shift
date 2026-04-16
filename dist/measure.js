@@ -18,17 +18,6 @@ const DEFAULT_SETTLE_TIMEOUT = 1000;
  *  4) Собираем entries, вычисляем метрики.
  *  5) Очищаем observer.
  *
- * @param page — Playwright Page (должна быть Chromium).
- * @param scenarioFn — async-функция с действиями на странице.
- * @param options — настройки измерения.
- * @returns StabilityResult с метриками.
- *
- * Пример:
- * ```ts
- * const result = await measureVisualStability(page, async (p) => {
- *   await p.goto('https://example.com');
- *   await p.click('#load-more');
- * });
  * ```
  */
 async function measureVisualStability(page, scenarioFn, options = {}) {

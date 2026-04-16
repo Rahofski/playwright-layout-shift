@@ -16,17 +16,6 @@ export interface VisualStabilityHelper {
 }
 /**
  * Расширенный Playwright Test с fixture `visualStability`.
- *
- * Использование:
- * ```ts
- * import { test, expect } from 'playwright-layout-shift/fixture';
- *
- * test('page is visually stable', async ({ page, visualStability }) => {
- *   await visualStability.measureAndAssert(page, async (p) => {
- *     await p.goto('https://example.com');
- *   }, { clsThreshold: 0.1 });
- * });
- * ```
  */
 export declare const test: import("@playwright/test").TestType<import("@playwright/test").PlaywrightTestArgs & import("@playwright/test").PlaywrightTestOptions & {
     visualStability: VisualStabilityHelper;

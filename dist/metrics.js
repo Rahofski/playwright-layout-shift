@@ -14,14 +14,6 @@ exports.calculateCustomMetric = calculateCustomMetric;
 // ————————————————————————————————————————————
 const DEFAULT_SESSION_GAP = 1000; // ms
 const DEFAULT_SESSION_MAX = 5000; // ms
-/**
- * Группирует layout-shift entries в session windows.
- *
- * Алгоритм:
- *  1) Записи сортируются по startTime.
- *  2) Новое окно начинается, если промежуток > sessionGap
- *     или длительность текущего окна > sessionMaxDuration.
- */
 function buildSessionWindows(entries, sessionGap = DEFAULT_SESSION_GAP, sessionMaxDuration = DEFAULT_SESSION_MAX) {
     if (entries.length === 0)
         return [];

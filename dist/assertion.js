@@ -1,7 +1,4 @@
 "use strict";
-// ============================================================
-// assertion.ts — Проверка порогов визуальной стабильности
-// ============================================================
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.assertVisualStability = assertVisualStability;
 const types_1 = require("./types");

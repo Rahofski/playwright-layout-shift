@@ -20,7 +20,7 @@ const {
   buildElementBreakdown,
 } = pkg;
 import * as fs from 'fs';
-import * as path from 'path';
+import * as path from 'path'; 
 import { fileURLToPath } from 'url';
 import type { Page } from '@playwright/test';
 
@@ -123,6 +123,19 @@ test.describe('Images Without Dimensions', () => {
     // Все shift-ы должны быть сгруппированы (интервалы < 1s)
     expect(result.sessionWindows.length).toBeGreaterThanOrEqual(1);
     console.log('[Images] Session windows:', result.sessionWindows.length);
+  });
+
+  test('CLS превышает порог Google "good" (0.1) — assertVisualStability падает', async ({ page }) => {
+    const result = await measure(page, async (p) => {
+      await p.goto('/#/image-no-dimensions');
+      await p.waitForTimeout(1500);
+    }, { settleTimeout: 500 });
+
+    console.log('[Images / assert] CLS:', result.cls.toFixed(4));
+    console.log('[Images / assert] Custom score:', result.customScore.toFixed(4));
+
+    // CLS ≈ 0.1095 > 0.1 — этот assert ДОЛЖЕН упасть
+    assertVisualStability(result, { clsThreshold: 0.1 });
   });
 });
 

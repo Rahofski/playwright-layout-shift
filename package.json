@@ -12,6 +12,7 @@
     "test:unit": "vitest run tests/unit",
     "test:integration": "npx playwright test tests/integration",
     "test": "npm run test:unit && npm run test:integration",
+    "benchmark": "npx tsx benchmark/run-benchmark.ts",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@playwright/test": "^1.52.0",
     "@types/node": "^25.5.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.8.0",
     "vitest": "^3.1.0"
   },

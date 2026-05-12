@@ -1,7 +1,5 @@
-// ============================================================
 // html-reporter.ts — Генерация self-contained HTML-отчёта
 // с тепловой картой, timeline и per-element breakdown
-// ============================================================
 
 import type {
   StabilityReport,
@@ -41,9 +39,7 @@ function heatColor(intensity: number): string {
   return `rgba(${r},${g},${b},${a.toFixed(2)})`;
 }
 
-// ————————————————————————————————————————————
 // SVG Heatmap
-// ————————————————————————————————————————————
 
 function renderHeatmapSvg(
   entries: LayoutShiftEntry[],
@@ -63,7 +59,7 @@ function renderHeatmapSvg(
       const prev = src.previousRect;
       const curr = src.currentRect;
 
-      // previousRect — серый контур
+      // серый контур
       rects.push(
         `<rect x="${prev.x}" y="${prev.y}" width="${prev.width}" height="${prev.height}" ` +
         `fill="none" stroke="#999" stroke-width="1" stroke-dasharray="4 2" opacity="0.6"/>`,
@@ -121,7 +117,7 @@ function renderTimelineSvg(
   for (let i = 0; i < sessionWindows.length; i++) {
     const w = sessionWindows[i];
     const x1 = scale(w.startTime);
-    const x2 = Math.max(scale(w.endTime), x1 + 4); // минимальная ширина 4px
+    const x2 = Math.max(scale(w.endTime), x1 + 4); 
     const winWidth = x2 - x1;
     const rating = clsRating(w.cumulativeScore);
 
@@ -190,9 +186,7 @@ function renderBreakdownTable(breakdowns: ElementBreakdown[]): string {
 </table>`;
 }
 
-// ————————————————————————————————————————————
 // Entries detail table
-// ————————————————————————————————————————————
 
 function renderEntriesTable(entries: LayoutShiftEntry[]): string {
   if (entries.length === 0) {
@@ -420,23 +414,13 @@ footer {
 }
 `;
 
-// ————————————————————————————————————————————
 // Главная функция
-// ————————————————————————————————————————————
 
 /**
  * Генерирует self-contained HTML-строку отчёта из StabilityReport.
  *
  * Отчёт включает:
- *  — Summary-карточки (CLS, customScore, shift count, duration)
- *  — Тепловую карту shift-ов (SVG overlay по viewport)
- *  — Timeline session windows
- *  — Per-element breakdown таблицу
- *  — Таблицу всех layout-shift entries
- *
- * @param report — данные отчёта (из buildReport).
- * @param options — опции отображения.
- * @returns HTML-строка (self-contained, без внешних зависимостей).
+
  */
 export function buildHtmlReport(
   report: StabilityReport,
@@ -544,9 +528,6 @@ export function buildHtmlReport(
 
 /**
  * Сохраняет HTML-отчёт в файл.
- *
- * @param html — HTML-строка (из buildHtmlReport).
- * @param filePath — путь к файлу.
  */
 export function saveHtmlReport(html: string, filePath: string): void {
   const dir = path.dirname(filePath);

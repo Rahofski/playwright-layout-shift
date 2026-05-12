@@ -9,10 +9,6 @@ interface CollectResult {
 
 /**
  * Инициализирует PerformanceObserver на странице.
- * Должна вызываться ДО начала сценария (до навигаций / действий).
- *
- * Рекомендуется использовать addInitScript для перехвата shift-ов,
- * которые могут произойти во время загрузки страницы.
  */
 export async function injectObserver(page: Page, options: MeasureOptions): Promise<void> {
   const script = getInjectionScript({

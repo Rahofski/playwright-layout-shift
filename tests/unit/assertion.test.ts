@@ -1,6 +1,4 @@
-// ============================================================
 // tests/unit/assertion.test.ts — Unit-тесты assertion
-// ============================================================
 
 import { describe, it, expect } from 'vitest';
 import { assertVisualStability } from '../../src/assertion';

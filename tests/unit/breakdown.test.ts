@@ -1,6 +1,4 @@
-// ============================================================
 // tests/unit/breakdown.test.ts — Unit-тесты per-element breakdown
-// ============================================================
 
 import { describe, it, expect } from 'vitest';
 import { buildElementBreakdown } from '../../src/breakdown';

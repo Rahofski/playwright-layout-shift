@@ -228,9 +228,6 @@ test.describe('Stable Layout (Control)', () => {
   });
 });
 
-// ————————————————————————————————————————————
-// Сравнительный анализ всех сценариев
-// ————————————————————————————————————————————
 test.describe('Comparative Analysis', () => {
   test('сравнение CLS всех сценариев', async ({ page }) => {
     const scenarios = [
@@ -244,7 +241,6 @@ test.describe('Comparative Analysis', () => {
     const results: Array<{ name: string; cls: number; customScore: number; shifts: number }> = [];
 
     for (const scenario of scenarios) {
-      // Каждый сценарий — свежая страница (чистый observer)
       await page.goto('/');
       await page.waitForTimeout(200);
 
@@ -274,7 +270,6 @@ test.describe('Comparative Analysis', () => {
     }
     console.log('========================================\n');
 
-    // Стабильная страница должна иметь наименьший CLS
     const stableResult = results.find(r => r.name === 'Stable (Control)')!;
     const unstableResults = results.filter(r => r.name !== 'Stable (Control)' && r.name !== 'Font Swap');
     for (const r of unstableResults) {

@@ -1,6 +1,4 @@
-// ============================================================
 // measure.ts — Главный API: measureVisualStability
-// ============================================================
 
 import type { Page } from 'playwright';
 import type {

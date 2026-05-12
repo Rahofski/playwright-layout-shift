@@ -1,6 +1,4 @@
-// ============================================================
 // tests/unit/injection.test.ts — Unit-тесты генерации скриптов
-// ============================================================
 
 import { describe, it, expect } from 'vitest';
 import { getInjectionScript, getCollectScript, getCleanupScript } from '../../src/injection';

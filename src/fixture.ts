@@ -1,6 +1,4 @@
-// ============================================================
 // fixture.ts — Playwright Test fixture для визуальной стабильности
-// ============================================================
 import { test as base, type Page } from '@playwright/test';
 import type {
   MeasureOptions,
@@ -12,9 +10,6 @@ import type {
 import { measureVisualStability } from './measure';
 import { assertVisualStability } from './assertion';
 
-/**
- * Тип helper-а, доступного в тестах через fixture.
- */
 export interface VisualStabilityHelper {
   /**
    * Измеряет визуальную стабильность в ходе сценария.

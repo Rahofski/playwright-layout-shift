@@ -1,6 +1,4 @@
-// ============================================================
 // tests/unit/html-reporter.test.ts — Unit-тесты HTML-репортера
-// ============================================================
 
 import { describe, it, expect } from 'vitest';
 import { buildHtmlReport } from '../../src/html-reporter';

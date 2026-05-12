@@ -1,6 +1,4 @@
-// ============================================================
 // metrics.ts — Вычисление CLS и кастомной метрики
-// ============================================================
 
 import type {
   LayoutShiftEntry,
@@ -85,17 +83,8 @@ export function calculateCLS(
   return { cls: maxScore, sessionWindows: windows };
 }
 
-// ————————————————————————————————————————————
 // Кастомная метрика
-// ————————————————————————————————————————————
 
-/**
- * Вычисляет амплитуду смещения для одного source:
- * Евклидово расстояние между центрами previousRect и currentRect,
- * нормализованное к диагонали viewport (для безразмерности).
- *
- * Если rect-ы не заполнены (нулевые), возвращает 0.
- */
 export function computeAmplitude(
   prev: ShiftRect,
   curr: ShiftRect,
@@ -119,9 +108,6 @@ export function computeAmplitude(
   return diagonal > 0 ? distance / diagonal : 0;
 }
 
-/**
- * Вычисляет среднюю амплитуду смещения для одного entry.
- */
 export function entryAmplitude(entry: LayoutShiftEntry): number {
   if (!entry.sources || entry.sources.length === 0) return 0;
 
@@ -133,20 +119,6 @@ export function entryAmplitude(entry: LayoutShiftEntry): number {
 }
 
 /**
- * Кастомная метрика, учитывающая:
- *  a) величину shift (value) — как в CLS;
- *  b) временну́ю близость shift-событий (session window clustering);
- *  c) амплитуду смещения по previousRect / currentRect.
- *
- * Формула для каждого session window:
- *   windowScore = Σ (entry.value × (1 + amplitudeWeight × entryAmplitude(entry)))
- *
- * Итоговая оценка = максимальный windowScore.
- *
- * Почему так:
- *  — Сдвиги с малой амплитудой (мигание) менее заметны пользователю.
- *  — Сдвиги, сгруппированные по времени, воспринимаются как один «рывок».
- *  — amplitudeWeight позволяет регулировать влияние геометрии.
  */
 export function calculateCustomMetric(
   entries: LayoutShiftEntry[],

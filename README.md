@@ -161,7 +161,54 @@ The advisor and contributor Vladimir A. Parkhomenko, Senior Lecturer of SPbPU IC
 ## Таблица 7. Чувствительность customScore к α (сценарий image-no-dimensions)
 
 | α | CLS (95% CI) | customScore (95% CI) | customScore / CLS | log₁₀(CLS) | log₁₀(customScore) | Δlog₁₀ |
-|---|-------------|---------------------|-------------------|------------|---------------------|--------|
+|---|-------------|---------------------|---------------flowchart LR
+    UserTest["Playwright test / scenarioFn(page)"]
+    Fixture["fixture.ts\nvisualStability helper"]
+    Measure["measure.ts\nmeasureVisualStability()"]
+    Collector["collector.ts\ninject / collect / cleanup"]
+    Injection["injection.ts\nPerformanceObserver script"]
+    Browser["Browser page context\nwindow.__pls_entries"]
+    Metrics["metrics.ts\nCLS + custom metric"]
+    Breakdown["breakdown.ts\nper-element aggregation"]
+    Assertion["assertion.ts\nthreshold validation"]
+    Reporter["reporter.ts\nJSON report"]
+    HtmlReporter["html-reporter.ts\nHTML report + heatmap/timeline"]
+    Types["types.ts\nshared contracts"]
+    Index["index.ts\npublic API exports"]
+
+    UserTest --> Fixture
+    UserTest --> Measure
+    Fixture --> Measure
+    Fixture --> Assertion
+
+    Measure --> Collector
+    Collector --> Injection
+    Injection --> Browser
+    Browser --> Collector
+    Collector --> Measure
+    Measure --> Metrics
+    Metrics --> Measure
+
+    Measure -->|StabilityResult| Assertion
+    Measure -->|StabilityResult| Reporter
+    Measure -->|StabilityResult| HtmlReporter
+    HtmlReporter --> Breakdown
+    Breakdown --> Metrics
+
+    Types --- Measure
+    Types --- Collector
+    Types --- Metrics
+    Types --- Assertion
+    Types --- Reporter
+    Types --- HtmlReporter
+    Types --- Breakdown
+    Index --> Measure
+    Index --> Assertion
+    Index --> Reporter
+    Index --> HtmlReporter
+    Index --> Breakdown
+    Index --> Collector
+    Index --> Metrics----|------------|---------------------|--------|
 | 0.0 | 0.1095 ± 0.0001 | 0.1095 ± 0.0001 | 1.000 ± 0.000 | −0.961 | −0.961 | 0.000 |
 | 0.1 | 0.1095 ± 0.0001 | 0.1111 ± 0.0002 | 1.015 ± 0.001 | −0.961 | −0.954 | 0.006 |
 | 0.2 | 0.1095 ± 0.0001 | 0.1128 ± 0.0002 | 1.030 ± 0.001 | −0.961 | −0.948 | 0.013 |

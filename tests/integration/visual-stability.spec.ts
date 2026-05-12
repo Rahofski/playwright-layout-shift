@@ -10,9 +10,6 @@ import { calculateCLS, calculateCustomMetric } from '../../src/metrics';
 import { buildReport } from '../../src/reporter';
 
 /**
- * Тестовая HTML-страница с искусственным layout shift.
- * Через 200ms после загрузки добавляется блок сверху,
- * сдвигая контент вниз.
  */
 const SHIFTING_PAGE = `data:text/html,
 <!DOCTYPE html>

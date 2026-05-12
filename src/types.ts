@@ -55,20 +55,11 @@ export interface MeasureOptions {
  * Опции кастомной метрики.
  */
 export interface CustomMetricOptions {
-  /**
-   * Максимальный промежуток между shift-ами (ms), при котором они считаются
-   * одним «кластером». По умолчанию 1000 (аналогично CLS session window).
-   */
+
   sessionGap?: number;
-  /**
-   * Максимальная длительность одного session window (ms).
-   * По умолчанию 5000.
-   */
+
   sessionMaxDuration?: number;
-  /**
-   * Весовой коэффициент для амплитуды смещения (0..1). По умолчанию 0.5.
-   * При 0 амплитуда не учитывается, при 1 — влияет наравне с value.
-   */
+
   amplitudeWeight?: number;
 }
 

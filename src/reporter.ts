@@ -1,15 +1,11 @@
-// ============================================================
-// reporter.ts — Генерация JSON-отчёта
-// ============================================================
+import type { StabilityResult, StabilityReport } from "./types";
+import * as fs from "fs";
+import * as path from "path";
 
-import type { StabilityResult, StabilityReport } from './types';
-import * as fs from 'fs';
-import * as path from 'path';
-
-/**
- * Формирует объект отчёта из результатов измерения.
- */
-export function buildReport(result: StabilityResult, url: string): StabilityReport {
+export function buildReport(
+  result: StabilityResult,
+  url: string,
+): StabilityReport {
   return {
     timestamp: new Date().toISOString(),
     url,
@@ -23,16 +19,10 @@ export function buildReport(result: StabilityResult, url: string): StabilityRepo
   };
 }
 
-/**
- * Сохраняет отчёт в JSON-файл.
- *
- * @param report — объект отчёта.
- * @param filePath — путь к файлу (абсолютный или относительный).
- */
 export function saveReport(report: StabilityReport, filePath: string): void {
   const dir = path.dirname(filePath);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
-  fs.writeFileSync(filePath, JSON.stringify(report, null, 2), 'utf-8');
+  fs.writeFileSync(filePath, JSON.stringify(report, null, 2), "utf-8");
 }

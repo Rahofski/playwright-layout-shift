@@ -5,12 +5,6 @@
 /**
  * Возвращает строку JS-кода для инжекта через page.evaluate / addInitScript.
  *
- * Техническое ограничение:
- *  — Layout Instability API доступен только в Chromium-based браузерах.
- *  — PerformanceObserver.supportedEntryTypes может не содержать 'layout-shift'
- *    в Firefox / WebKit → код просто не будет собирать ничего.
- *  — sources[].node не сериализуется (DOM-ссылка), вместо этого пытаемся
- *    получить CSS-селектор через best-effort функцию.
  */
 
 export interface InjectionOptions {
